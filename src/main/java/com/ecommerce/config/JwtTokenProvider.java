@@ -14,11 +14,12 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import com.ecommerce.config.*;
 
 @Service
 public class JwtTokenProvider {
 
-    private SecretKey key=Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+    private SecretKey key=Keys.hmacShaKeyFor(com.ecommerce.config.JwtConstant.SECRET_KEY.getBytes());
 
     public String generateToken(Authentication auth) {
 

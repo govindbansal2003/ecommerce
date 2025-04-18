@@ -15,10 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/reviews")
-public class ReviewContoller {
+public class ReviewController {
     private final ReviewService reviewService;
-    private UserService userService;
-    public ReviewContoller(ReviewService reviewService, UserService userService) {
+    private final  UserService userService;
+    public ReviewController(ReviewService reviewService, UserService userService) {
         this.reviewService = reviewService;
         this.userService = userService;
     }
@@ -29,12 +29,12 @@ public class ReviewContoller {
         System.out.println("product id "+req.getProductId()+" - "+req.getReview());
         Review review=reviewService.createReview(req, user);
         System.out.println("product review "+req.getReview());
-        return new ResponseEntity<Review>(review, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(review, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/product/{productId}")
     public ResponseEntity<List<Review>> getProductsReviewHandler(@PathVariable Long productId){
         List<Review>reviews=reviewService.getAllReviews(productId);
-        return new ResponseEntity<List<Review>>(reviews,HttpStatus.OK);
+        return new ResponseEntity<>(reviews,HttpStatus.OK);
     }
 }
